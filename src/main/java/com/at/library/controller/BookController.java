@@ -30,7 +30,7 @@ public class BookController {
 		return bookservice.findAll();
 	}
 	
-	@RequestMapping(value= "/id", method = RequestMethod.GET)
+	@RequestMapping(value= "/{id}", method = RequestMethod.GET)
 	public BookDTO findOne(@PathVariable("id") Integer id){
 		return bookservice.findById(id);
 	}
@@ -44,9 +44,9 @@ public class BookController {
 	}
 
 	//TODO: Actualizar
-	@RequestMapping(method = {RequestMethod.POST})
-	public BookDTO create(@RequestBody BookDTO book){
-		log.debug(String.format("Vamos a crear el libro siguiente: %s", book));
-		return bookservice.create(book);
+	@RequestMapping(value= "/{id}", method = {RequestMethod.PUT})
+	public BookDTO update(@PathVariable("id") Integer id, @RequestBody BookDTO book){
+		log.debug(String.format("Vamos a modificar el libro: %s", book));
+		return bookservice.update(book);
 	}
 }

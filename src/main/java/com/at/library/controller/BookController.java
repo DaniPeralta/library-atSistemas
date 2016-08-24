@@ -38,15 +38,22 @@ public class BookController {
 
 	//TOD0: Crear
 	@RequestMapping(method = {RequestMethod.POST})
-	public BookDTO create(@RequestBody BookDTO book){
-		log.debug(String.format("Vamos a crear el libro siguiente: %s", book));
-		return bookservice.create(book);
+	public BookDTO create(@RequestBody BookDTO bookDTO){
+		log.debug(String.format("Vamos a crear el libro siguiente: %s", bookDTO));
+		return bookservice.create(bookDTO);
 	}
 
 	//TODO: Actualizar
 	@RequestMapping(value= "/{id}", method = {RequestMethod.PUT})
-	public BookDTO update(@PathVariable("id") Integer id, @RequestBody BookDTO book){
-		log.debug(String.format("Vamos a modificar el libro: %s", book));
-		return bookservice.update(book);
+	public void update(@PathVariable("id") Integer id, @RequestBody BookDTO bookDTO){
+		log.debug(String.format("Vamos a modificar el libro: %s", bookDTO));
+		bookservice.update(bookDTO);
+	}
+	
+	//TODO: Actualizar
+	@RequestMapping(value= "/{id}", method = {RequestMethod.DELETE})
+	public void delete(@PathVariable("id") Integer id){
+		log.debug(String.format("Vamos a borrar el libro con id: %s", id));
+		bookservice.delete(id);
 	}
 }

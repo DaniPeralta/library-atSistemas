@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,12 +21,13 @@ public class Rent implements Serializable {
 	@GeneratedValue
 	private Integer id;
 
-
-	@ManyToOne
+	@OneToMany
 	private List<Book> books;
 
+	@ManyToOne
 	private User user;
 
+	@ManyToOne
 	private Employee employee;
 	
 	
@@ -39,7 +41,6 @@ public class Rent implements Serializable {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-
 
 	public List<Book> getBooks() {
 		return books;

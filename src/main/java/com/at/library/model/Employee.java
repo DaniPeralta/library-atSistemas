@@ -2,9 +2,11 @@ package com.at.library.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -20,6 +22,12 @@ public class Employee implements Serializable{
 
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
+	
+	@OneToMany
+	private List<Book> books;
+	
+	@OneToMany
+	private List<Book> users;
 
 	public String getDni() {
 		return dni;
@@ -43,6 +51,24 @@ public class Employee implements Serializable{
 
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
+	}
+
+	public List<Book> getBooks() {
+		return books;
+	}
+
+	public void setBooks(List<Book> books) {
+		this.books = books;
+	}
+
+	public List<Book> getUsers() {
+		return users;
+	}
+
+	public void setUsers(List<Book> users) {
+		this.users = users;
 	}	
+	
+	
 	
 }

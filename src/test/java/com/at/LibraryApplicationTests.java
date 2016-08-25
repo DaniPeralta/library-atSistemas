@@ -11,7 +11,6 @@ public class LibraryApplicationTests {
 	public void contextLoads() {
 		final String url = "http://localhost:8080/book/1";
 		final BookDTO book = new RestTemplate().getForObject(url, BookDTO.class);
-		
 	}
 
 }

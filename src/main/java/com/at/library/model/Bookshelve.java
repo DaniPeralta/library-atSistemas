@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Bookshelve implements Serializable{
@@ -18,6 +19,7 @@ public class Bookshelve implements Serializable{
 
 	private String name;
 
+	@OneToMany
 	private List<Book> books;
 
 	public Integer getId() {

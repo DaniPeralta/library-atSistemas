@@ -1,10 +1,11 @@
 package com.at.library.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -14,29 +15,19 @@ public class Bookshelve implements Serializable{
 	private static final long serialVersionUID = 6022960347036022772L;
 	
 	@Id
-	@GeneratedValue
-	private Integer id;
+	private String code;
 
-	private String name;
+	@OneToMany(fetch = FetchType.LAZY)
+	private List<Book> books = new ArrayList<>();
 
-	@OneToMany
-	private List<Book> books;
-
-	public Integer getId() {
-		return id;
+	public String getCode() {
+		return code;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setCode(String code) {
+		this.code = code;
 	}
 
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
 
 	public List<Book> getBooks() {
 		return books;

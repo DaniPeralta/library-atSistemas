@@ -2,13 +2,12 @@ package com.at.library.model;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -21,8 +20,8 @@ public class Rent implements Serializable {
 	@GeneratedValue
 	private Integer id;
 
-	@OneToMany
-	private List<Book> books;
+	@OneToOne
+	private Book book;
 
 	@ManyToOne
 	private User user;
@@ -30,9 +29,11 @@ public class Rent implements Serializable {
 	@ManyToOne
 	private Employee employee;
 	
-	
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date startDate;
+	
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date endDate;
 	
 	public Integer getId() {
 		return id;
@@ -42,12 +43,13 @@ public class Rent implements Serializable {
 		this.id = id;
 	}
 
-	public List<Book> getBooks() {
-		return books;
+
+	public Book getBook() {
+		return book;
 	}
 
-	public void setBooks(List<Book> books) {
-		this.books = books;
+	public void setBook(Book book) {
+		this.book = book;
 	}
 
 	public User getUser() {
@@ -72,6 +74,14 @@ public class Rent implements Serializable {
 
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
 	}
 
 }

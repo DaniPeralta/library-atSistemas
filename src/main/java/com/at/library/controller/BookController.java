@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.at.library.dto.BookDTO;
-import com.at.library.service.book.BookService;
+import com.at.library.service.BookService;
 
 @RestController
 @RequestMapping(value = "/book")

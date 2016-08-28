@@ -1,5 +1,7 @@
 package com.at.library.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,14 @@ public class UserController {
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 	
 	
-	//TOD0: Crear
+	//TODO: Devolver todos los usuarios
+	@RequestMapping(method = { RequestMethod.GET })
+	public List<UserDTO> getAll() {
+		log.debug("Devuelve todos los usuarios");
+		return userservice.findAll();
+	}
+	
+	//TODO: Crear
 	@RequestMapping(method = {RequestMethod.POST})
 	public UserDTO create(@RequestBody UserDTO userDTO){
 		log.debug(String.format("Vamos a crear el usuario siguiente: %s", userDTO));

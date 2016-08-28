@@ -1,6 +1,8 @@
 package com.at.library.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
 import org.dozer.DozerBeanMapper;
@@ -24,8 +26,15 @@ public class UserServiceImpl implements UserService {
 	
 	@Override
 	public List<UserDTO> findAll() {
-		// TODO Auto-generated method stub
-		return null;
+		final Iterable<User> findAll = userDao.findAll();
+		final Iterator<User> iterator = findAll.iterator();
+		final List<UserDTO> res = new ArrayList<>();
+		while (iterator.hasNext()) {
+			final User u = iterator.next();
+			final UserDTO uDTO = transform(u);
+			res.add(uDTO);
+		}
+		return res;
 	}
 
 	@Override

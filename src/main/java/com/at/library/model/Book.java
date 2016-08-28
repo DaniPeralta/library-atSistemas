@@ -92,6 +92,13 @@ public class Book implements Serializable {
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
 	}
+
+	@Override
+	public String toString() {
+		return "Book [id=" + id + ", isbn=" + isbn + ", title=" + title + ", author=" + author + ", status=" + status
+				+ ", startDate=" + startDate + ", endDate=" + endDate + "]";
+	}
+	
 	
 
 }

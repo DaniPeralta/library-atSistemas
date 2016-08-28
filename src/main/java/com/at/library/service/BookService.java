@@ -65,4 +65,11 @@ public interface BookService {
 	 */
 	boolean available(Integer id);
 
+	/**
+	 * Cambia el estado del libro
+	 * @param id
+	 * @return
+	 */
+	void changeState(Integer id);
+
 }

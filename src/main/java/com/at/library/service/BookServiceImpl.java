@@ -85,6 +85,18 @@ public class BookServiceImpl implements BookService {
 		else
 			return false;
 	}
+	
+	@Override
+	public void changeState(Integer id){
+		final Book b = bookDao.findOne(id);
+		if(available(id))
+			b.setStatus(StatusEnum.DISABLE);
+		else
+			b.setStatus(StatusEnum.ACTIVE);
+		
+		bookDao.save(b);
+			
+	}
 
 	
 }

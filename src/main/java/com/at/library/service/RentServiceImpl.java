@@ -1,19 +1,18 @@
 package com.at.library.service;
 
 import java.util.Calendar;
+import java.util.Iterator;
 import java.util.List;
 
 //import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.at.library.dao.BookDao;
 import com.at.library.dao.EmployeeDao;
 import com.at.library.dao.RentDao;
 import com.at.library.dto.BookDTO;
 import com.at.library.dto.RentPostDTO;
 import com.at.library.dto.UserDTO;
-import com.at.library.enums.StatusEnum;
 import com.at.library.model.Book;
 import com.at.library.model.Employee;
 import com.at.library.model.Rent;
@@ -24,9 +23,6 @@ public class RentServiceImpl implements RentService{
 
 	@Autowired
 	private RentDao rentDao;
-
-	@Autowired
-	private BookDao bookdao;
 	
 	/*@Autowired
 	private DozerBeanMapper dozer;*/
@@ -104,14 +100,25 @@ public class RentServiceImpl implements RentService{
 	}
 
 	@Override
-	public RentPostDTO findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+	public RentPostDTO findByBookAndUser(Integer idLibro, Integer idUser) {
+		
+		final Iterable<Rent> findAll = rentDao.findAll();
+		final Iterator<Rent> iterator = findAll.iterator();
+		RentPostDTO res = new RentPostDTO();
+		while (iterator.hasNext()) {
+			final Rent r = iterator.next();
+			if(r.getRentpk().getBook().getId()==idLibro && r.getUser().getId()==idUser && r.getEndDate() == null){
+				final RentPostDTO rDTO = transform(r);
+				res = rDTO;
+			}			
+		}
+		return res;
 	}
 
 	@Override
 	public void returnBook(Integer idLibro, Integer idUser) {
-		// TODO Auto-generated method stub
+		
+		
 		
 	}
 

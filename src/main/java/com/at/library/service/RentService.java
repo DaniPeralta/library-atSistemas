@@ -39,11 +39,11 @@ public interface RentService {
 	RentPostDTO create(RentPostDTO rentDTO);
 
 	/**
-	 * Busca por id
+	 * Buscamos el libro alquilado por un usuario y no devuelto
 	 * @param id
 	 * @return
 	 */
-	RentPostDTO findById(Integer id);
+	RentPostDTO findByBookAndUser(Integer idLibro, Integer idUser);
 
 	/**
 	 * Devolver Libro alquilado

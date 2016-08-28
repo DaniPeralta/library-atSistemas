@@ -59,5 +59,10 @@ public class Rent implements Serializable {
 		this.rentpk = rentpk;
 	}
 
+	@Override
+	public String toString() {
+		return "Rent [rentpk=" + rentpk + ", user=" + user + ", employee=" + employee + ", endDate=" + endDate + "]";
+	}
+
 	
 }

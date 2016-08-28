@@ -34,6 +34,11 @@ public class RentPK implements Serializable{
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
+
+	@Override
+	public String toString() {
+		return "RentPK [book=" + book + ", startDate=" + startDate + "]";
+	}
 	
 	
 

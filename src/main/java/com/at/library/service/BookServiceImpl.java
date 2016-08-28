@@ -76,4 +76,15 @@ public class BookServiceImpl implements BookService {
 		bookDao.save(b);
 	}
 
+	@Override
+	public boolean available(Integer id) {
+		final Book b = bookDao.findOne(id);
+		
+		if(b.getStatus()== StatusEnum.ACTIVE)
+			return true;
+		else
+			return false;
+	}
+
+	
 }

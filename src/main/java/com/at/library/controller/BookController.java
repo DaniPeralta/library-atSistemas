@@ -23,37 +23,45 @@ public class BookController {
 
 	private static final Logger log = LoggerFactory.getLogger(BookController.class);
 	
-	
+	//Buscar todos
 	@RequestMapping(method = { RequestMethod.GET })
 	public List<BookDTO> getAll() {
 		log.debug("Devuelve todos los libros");
 		return bookservice.findAll();
 	}
 	
+	//Buscar por id
 	@RequestMapping(value= "/{id}", method = RequestMethod.GET)
 	public BookDTO findOne(@PathVariable("id") Integer id){
 		return bookservice.findById(id);
 	}
 	
 
-	//TOD0: Crear
+	//Crear
 	@RequestMapping(method = {RequestMethod.POST})
 	public BookDTO create(@RequestBody BookDTO bookDTO){
 		log.debug(String.format("Vamos a crear el libro siguiente: %s", bookDTO));
 		return bookservice.create(bookDTO);
 	}
 
-	//TODO: Actualizar
+	//Actualizar
 	@RequestMapping(value= "/{id}", method = {RequestMethod.PUT})
 	public void update(@PathVariable("id") Integer id, @RequestBody BookDTO bookDTO){
 		log.debug(String.format("Vamos a modificar el libro: %s", bookDTO));
 		bookservice.update(bookDTO);
 	}
 	
-	//TODO: Borrar
+	//Borrar
 	@RequestMapping(value= "/{id}", method = {RequestMethod.DELETE})
 	public void delete(@PathVariable("id") Integer id){
 		log.debug(String.format("Vamos a borrar el libro con id: %s", id));
 		bookservice.delete(id);
+	}
+	
+	//Disponible
+	@RequestMapping(value= "available/{id}", method = {RequestMethod.GET})
+	public boolean available(@PathVariable("id") Integer id){
+		log.debug(String.format("Vamos a ver si el libro con id: %s está disponible", id));
+		return bookservice.available(id);
 	}
 }

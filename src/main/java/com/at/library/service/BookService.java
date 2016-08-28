@@ -15,7 +15,7 @@ public interface BookService {
 	List<BookDTO> findAll();
 
 	/**
-	 * Transfrma un libro en un libroDTO
+	 * Transforma un libro en un libroDTO
 	 * 
 	 * @param book
 	 * @return
@@ -57,5 +57,12 @@ public interface BookService {
 	 * @return
 	 */
 	void delete(Integer id);
+	
+	/**
+	 * Comprueba si el libro está disponible
+	 * @param id
+	 * @return
+	 */
+	boolean available(Integer id);
 
 }

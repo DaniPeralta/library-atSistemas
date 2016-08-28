@@ -7,11 +7,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.at.library.dao.BookDao;
 import com.at.library.dao.EmployeeDao;
 import com.at.library.dao.RentDao;
 import com.at.library.dto.BookDTO;
 import com.at.library.dto.RentPostDTO;
 import com.at.library.dto.UserDTO;
+import com.at.library.enums.StatusEnum;
+import com.at.library.model.Book;
 import com.at.library.model.Employee;
 import com.at.library.model.Rent;
 import com.at.library.model.RentPK;
@@ -21,6 +24,9 @@ public class RentServiceImpl implements RentService{
 
 	@Autowired
 	private RentDao rentDao;
+
+	@Autowired
+	private BookDao bookdao;
 	
 	/*@Autowired
 	private DozerBeanMapper dozer;*/
@@ -72,19 +78,29 @@ public class RentServiceImpl implements RentService{
 	
 	private RentPK addPK(Integer idLibro){
 		
-		final BookDTO bookdto = bookservice.findById(idLibro);
-		
-		RentPK rentpk = new RentPK();
-		rentpk.setBook(bookservice.transform(bookdto));
-		rentpk.setStartDate(Calendar.getInstance().getTime());
-		
-		return rentpk;	
+			final BookDTO bookdto = bookservice.findById(idLibro);
+			
+			RentPK rentpk = new RentPK();
+			rentpk.setBook(bookservice.transform(bookdto));
+			rentpk.setStartDate(Calendar.getInstance().getTime());
+			
+			return rentpk;
+			
 	}
 
 	@Override
 	public RentPostDTO create(RentPostDTO rentDTO) {
 		final Rent rent = transform(rentDTO);
-		return transform(rentDao.save(rent));
+		
+		final Book b = rent.getRentpk().getBook();
+		
+		System.out.println(b);
+		if(bookservice.available(b.getId())){
+			bookservice.changeState(b.getId());
+			return transform(rentDao.save(rent));
+		}
+		else
+			return null;
 	}
 
 	@Override
@@ -94,9 +110,11 @@ public class RentServiceImpl implements RentService{
 	}
 
 	@Override
-	public void update(RentPostDTO bookDTO) {
+	public void returnBook(Integer idLibro, Integer idUser) {
 		// TODO Auto-generated method stub
 		
 	}
+
+	
 
 }

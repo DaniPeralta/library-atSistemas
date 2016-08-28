@@ -46,11 +46,11 @@ public interface RentService {
 	RentPostDTO findById(Integer id);
 
 	/**
-	 * Actualiza alquiler
+	 * Devolver Libro alquilado
 	 * @param book
 	 * @return
 	 */
-	void update(RentPostDTO bookDTO);
+	void returnBook(Integer idLibro, Integer idUser);
 	
 
 }

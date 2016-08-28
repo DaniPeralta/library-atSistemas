@@ -50,7 +50,7 @@ public class BookController {
 		bookservice.update(bookDTO);
 	}
 	
-	//TODO: Actualizar
+	//TODO: Borrar
 	@RequestMapping(value= "/{id}", method = {RequestMethod.DELETE})
 	public void delete(@PathVariable("id") Integer id){
 		log.debug(String.format("Vamos a borrar el libro con id: %s", id));

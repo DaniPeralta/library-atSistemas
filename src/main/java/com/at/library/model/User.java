@@ -4,10 +4,14 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import com.at.library.enums.StatusEnum;
 
 
 @Entity
@@ -23,12 +27,23 @@ public class User implements Serializable {
 
 	private String name;
 	
-	private String sanction;
-
+	@Enumerated(EnumType.STRING)
+	private StatusEnum status;
+	
+	
 	@Temporal(TemporalType.DATE)
+   /* @Value("#{new java.text.SimpleDateFormat('${aDateFormat}').parse('${aDateStr}')}")*/
 	private Date startDate;
 	
 	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public String getDni() {
 		return dni;
 	}
@@ -45,12 +60,12 @@ public class User implements Serializable {
 		this.name = name;
 	}
 
-	public String getSanction() {
-		return sanction;
+	public StatusEnum getStatus() {
+		return status;
 	}
 
-	public void setSanction(String sanction) {
-		this.sanction = sanction;
+	public void setStatus(StatusEnum status) {
+		this.status = status;
 	}
 
 	public Date getStartDate() {

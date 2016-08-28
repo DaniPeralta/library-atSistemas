@@ -2,6 +2,8 @@ package com.at.library.dto;
 
 import java.io.Serializable;
 
+import com.at.library.enums.StatusEnum;
+
 public class UserDTO implements Serializable{
 
 	private static final long serialVersionUID = 3827455324138571715L;
@@ -12,8 +14,8 @@ public class UserDTO implements Serializable{
 
 	private String name;
 	
-	private String sanction;
-
+	private StatusEnum status;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -38,17 +40,19 @@ public class UserDTO implements Serializable{
 		this.name = name;
 	}
 
-	public String getSanction() {
-		return sanction;
+	public StatusEnum getStatus() {
+		return status;
 	}
 
-	public void setSanction(String sanction) {
-		this.sanction = sanction;
+	public void setStatus(StatusEnum status) {
+		this.status = status;
 	}
 
 	@Override
 	public String toString() {
-		return "UserDTO [id=" + id + ", dni=" + dni + ", name=" + name + ", sanction=" + sanction + "]";
+		return "UserDTO [id=" + id + ", dni=" + dni + ", name=" + name + ", status=" + status + "]";
 	}
+	
+	
 	
 }

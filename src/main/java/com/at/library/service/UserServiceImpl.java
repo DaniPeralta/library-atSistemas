@@ -1,5 +1,6 @@
 package com.at.library.service;
 
+import java.util.Calendar;
 import java.util.List;
 
 import org.dozer.DozerBeanMapper;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.at.library.dao.UserDao;
 import com.at.library.dto.UserDTO;
+import com.at.library.enums.StatusEnum;
 import com.at.library.model.User;
 
 @Service
@@ -39,13 +41,15 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public UserDTO create(UserDTO userDTO) {
 		final User user = transform(userDTO);
+		user.setStatus(StatusEnum.ACTIVE);
+		user.setStartDate(Calendar.getInstance().getTime());
 		return transform(userDao.save(user));
 	}
 
 	@Override
 	public UserDTO findById(Integer id) {
-		// TODO Auto-generated method stub
-		return null;
+		final User u = userDao.findOne(id);
+		return transform(u);
 	}
 
 	@Override
@@ -56,8 +60,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void delete(Integer id) {
-		// TODO Auto-generated method stub
-		
+		final UserDTO u = findById(id);
+		u.setStatus(StatusEnum.DISABLE);
+		userDao.save(transform(u));
 	}
 	
 	

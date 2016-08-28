@@ -69,6 +69,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public void delete(Integer id) {
+		//¿Hacer así o con el FindOne?
 		final UserDTO u = findById(id);
 		u.setStatus(StatusEnum.DISABLE);
 		userDao.save(transform(u));

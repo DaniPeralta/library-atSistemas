@@ -1,6 +1,7 @@
 package com.at.library.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.at.library.dao.BookDao;
 import com.at.library.dto.BookDTO;
+import com.at.library.enums.StatusEnum;
 import com.at.library.model.Book;
 
 @Service
@@ -55,6 +57,8 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public BookDTO create(BookDTO bookDTO) {
 		final Book book = transform(bookDTO);
+		book.setStartDate(Calendar.getInstance().getTime());
+		book.setStatus(StatusEnum.ACTIVE);
 		return transform(bookDao.save(book));
 	}
 
@@ -66,7 +70,9 @@ public class BookServiceImpl implements BookService {
 
 	@Override
 	public void delete(Integer id) {
-		bookDao.delete(id);
+		final Book b = bookDao.findOne(id);
+		b.setStatus(StatusEnum.DISABLE);
+		bookDao.save(b);
 	}
 
 }

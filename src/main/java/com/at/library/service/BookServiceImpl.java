@@ -72,6 +72,7 @@ public class BookServiceImpl implements BookService {
 	public void delete(Integer id) {
 		final Book b = bookDao.findOne(id);
 		b.setStatus(StatusEnum.DISABLE);
+		b.setEndDate(Calendar.getInstance().getTime());
 		bookDao.save(b);
 	}
 

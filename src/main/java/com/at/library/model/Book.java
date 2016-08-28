@@ -33,6 +33,9 @@ public class Book implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
+	
+	@Temporal(TemporalType.DATE)
+	private Date endDate;
 
 	public Integer getId() {
 		return id;
@@ -81,5 +84,14 @@ public class Book implements Serializable {
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
 	}
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+	
 
 }

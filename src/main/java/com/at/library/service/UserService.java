@@ -57,4 +57,8 @@ public interface UserService {
 	 * @return
 	 */
 	void delete(Integer id);
+
+	void penalize();
+
+	void forgive();
 }

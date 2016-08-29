@@ -29,7 +29,7 @@ public class RentController {
 	}
 	
 	//Devolver
-	@RequestMapping(value= "/{id}", method = {RequestMethod.PUT})
+	@RequestMapping(value= "/{id}", method = {RequestMethod.DELETE})
 	public boolean returnBook(@PathVariable("id") Integer id){
 		log.debug(String.format("Vamos a devolver el alquiler del siguiente libro: %s", id));
 		return rentservice.returnBook(id);

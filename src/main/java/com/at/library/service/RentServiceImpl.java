@@ -78,7 +78,7 @@ public class RentServiceImpl implements RentService{
 			
 			RentPK rentpk = new RentPK();
 			rentpk.setBook(bookservice.transform(bookdto));
-			rentpk.setStartDate(Calendar.getInstance().getTime());
+			//rentpk.setStartDate(Calendar.getInstance().getTime());
 			
 			return rentpk;
 			
@@ -91,6 +91,7 @@ public class RentServiceImpl implements RentService{
 		final Book b = rent.getRentpk().getBook();
 		
 		if(bookservice.available(b.getId())){
+			rent.getRentpk().setStartDate(Calendar.getInstance().getTime());
 			bookservice.changeState(b.getId());
 			return transform(rentDao.save(rent));
 		}

@@ -59,9 +59,9 @@ public class BookController {
 	}
 	
 	//Disponible
-	@RequestMapping(value= "available/{id}", method = {RequestMethod.GET})
+	/*@RequestMapping(value= "available/{id}", method = {RequestMethod.GET})
 	public boolean available(@PathVariable("id") Integer id){
 		log.debug(String.format("Vamos a ver si el libro con id: %s está disponible", id));
 		return bookservice.available(id);
-	}
+	}*/
 }

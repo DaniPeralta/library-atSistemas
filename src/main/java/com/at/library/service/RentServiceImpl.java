@@ -90,7 +90,6 @@ public class RentServiceImpl implements RentService{
 		
 		final Book b = rent.getRentpk().getBook();
 		
-		System.out.println(b);
 		if(bookservice.available(b.getId())){
 			bookservice.changeState(b.getId());
 			return transform(rentDao.save(rent));
@@ -100,26 +99,33 @@ public class RentServiceImpl implements RentService{
 	}
 
 	@Override
-	public RentPostDTO findByBookAndUser(Integer idLibro, Integer idUser) {
+	public Rent findByBook(Integer idLibro) {
 		
 		final Iterable<Rent> findAll = rentDao.findAll();
 		final Iterator<Rent> iterator = findAll.iterator();
-		RentPostDTO res = new RentPostDTO();
 		while (iterator.hasNext()) {
 			final Rent r = iterator.next();
-			if(r.getRentpk().getBook().getId()==idLibro && r.getUser().getId()==idUser && r.getEndDate() == null){
-				final RentPostDTO rDTO = transform(r);
-				res = rDTO;
+			if(r.getRentpk().getBook().getId()==idLibro && r.getEndDate() == null){
+				return r;
 			}			
 		}
-		return res;
+		return null;
 	}
 
 	@Override
-	public void returnBook(Integer idLibro, Integer idUser) {
+	public boolean returnBook(Integer idLibro) {
 		
+		Rent r = findByBook(idLibro);
 		
+		if(r!=null){
+			Rent res = rentDao.findOne(r.getRentpk());
+			res.setEndDate(Calendar.getInstance().getTime());
+			bookservice.changeState(idLibro);
+			rentDao.save(res);
+			return true;
+		}
 		
+		return false;
 	}
 
 	

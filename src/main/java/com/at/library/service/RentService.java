@@ -43,14 +43,14 @@ public interface RentService {
 	 * @param id
 	 * @return
 	 */
-	RentPostDTO findByBookAndUser(Integer idLibro, Integer idUser);
+	Rent findByBook(Integer idLibro);
 
 	/**
 	 * Devolver Libro alquilado
 	 * @param book
 	 * @return
 	 */
-	void returnBook(Integer idLibro, Integer idUser);
+	boolean returnBook(Integer idLibro);
 	
 
 }

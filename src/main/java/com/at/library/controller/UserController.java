@@ -32,8 +32,8 @@ public class UserController {
 		return userservice.findAll();
 	}
 	
-	//Devolver todos los usuarios
-	@RequestMapping(value = "/prueba", method = { RequestMethod.GET })
+	//Devolver todos los usuarios que coincidan con el DNI y/o con el nombre
+	@RequestMapping(method = { RequestMethod.GET })
 	public List<UserDTO> getUserByNameOrDNI(
 			@RequestParam(value = "name", required = false, defaultValue="") String name,
 			@RequestParam(value = "dni", required = false, defaultValue="") String dni) {

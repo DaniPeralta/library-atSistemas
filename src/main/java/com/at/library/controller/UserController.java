@@ -26,11 +26,11 @@ public class UserController {
 	
 	
 	//Devolver todos los usuarios
-	@RequestMapping(method = { RequestMethod.GET })
+/*	@RequestMapping(method = { RequestMethod.GET })
 	public List<UserDTO> getAll() {
 		log.debug("Devuelve todos los usuarios");
 		return userservice.findAll();
-	}
+	}*/
 	
 	//Devolver todos los usuarios que coincidan con el DNI y/o con el nombre
 	@RequestMapping(method = { RequestMethod.GET })

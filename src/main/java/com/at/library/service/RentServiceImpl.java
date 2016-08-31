@@ -8,13 +8,11 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.at.library.dao.EmployeeDao;
 import com.at.library.dao.RentDao;
 import com.at.library.dto.BookDTO;
 import com.at.library.dto.RentPostDTO;
 import com.at.library.dto.UserDTO;
 import com.at.library.model.Book;
-import com.at.library.model.Employee;
 import com.at.library.model.Rent;
 import com.at.library.model.RentPK;
 
@@ -33,9 +31,9 @@ public class RentServiceImpl implements RentService{
 	@Autowired
 	private UserService userservice;
 	
-	//Esto hay que quitarlo cuando lo implementemos
+	/*Esto hay que quitarlo cuando lo implementemos
 	@Autowired
-	private EmployeeDao employeedao;
+	private EmployeeDao employeedao;*/
 		
 	@Override
 	public List<RentPostDTO> findAll() {
@@ -47,9 +45,8 @@ public class RentServiceImpl implements RentService{
 	public RentPostDTO transform(Rent rent) {
 		
 		final RentPostDTO rentdto = new RentPostDTO();
-		rentdto.setIdEmployee(rent.getEmployee().getId());
-		rentdto.setIdLibro(rent.getRentpk().getBook().getId());
-		rentdto.setIdUser(rent.getUser().getId());
+		rentdto.setBook(rent.getRentpk().getBook().getId());
+		rentdto.setUser(rent.getUser().getId());
 		
 		return rentdto;
 	}
@@ -60,13 +57,13 @@ public class RentServiceImpl implements RentService{
 		final Rent rent = new Rent();
 		
 		//Hay que cambiarlo cuando implementemos Employee
-		final Employee e = employeedao.findOne(rentDTO.getIdEmployee());
-		final UserDTO u = userservice.findById(rentDTO.getIdUser());
+		//final Employee e = employeedao.findOne(rentDTO.());
+		final UserDTO u = userservice.findById(rentDTO.getUser());
 		
-		RentPK rentpk = addPK(rentDTO.getIdLibro());
+		RentPK rentpk = addPK(rentDTO.getBook());
 		
 		rent.setRentpk(rentpk);
-		rent.setEmployee(e);
+		//rent.setEmployee(e);
 		rent.setUser(userservice.transform(u));
 		
 		return rent;

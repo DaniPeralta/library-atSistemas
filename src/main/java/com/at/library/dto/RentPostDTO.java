@@ -6,33 +6,28 @@ public class RentPostDTO implements Serializable{
 
 	private static final long serialVersionUID = 7376238822804911669L;
 	
-	private Integer idLibro;
-	private Integer idUser;
-	private Integer idEmployee;
+	private Integer book;
+	private Integer user;
+	//private Integer idEmployee;
 	
-	public Integer getIdLibro() {
-		return idLibro;
+	public Integer getBook() {
+		return book;
 	}
-	public void setIdLibro(Integer idLibro) {
-		this.idLibro = idLibro;
+	public void setBook(Integer book) {
+		this.book = book;
 	}
-	public Integer getIdUser() {
-		return idUser;
+	public Integer getUser() {
+		return user;
 	}
-	public void setIdUser(Integer idUser) {
-		this.idUser = idUser;
+	public void setUser(Integer user) {
+		this.user = user;
 	}
-	public Integer getIdEmployee() {
-		return idEmployee;
-	}
-	public void setIdEmployee(Integer idEmployee) {
-		this.idEmployee = idEmployee;
-	}
-	
 	@Override
 	public String toString() {
-		return "RentPostDTO [idLibro=" + idLibro + ", idUser=" + idUser + ", idEmployee=" + idEmployee + "]";
+		return "RentPostDTO [book=" + book + ", user=" + user + "]";
 	}
+	
+	
 	
 	
 

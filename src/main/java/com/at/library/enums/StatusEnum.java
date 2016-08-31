@@ -2,6 +2,6 @@ package com.at.library.enums;
 
 public enum StatusEnum {
 
-	ACTIVE, DISABLE, SANCTIONED;
+	ACTIVE, DISABLE, SANCTIONED, RENTED;
 
 }

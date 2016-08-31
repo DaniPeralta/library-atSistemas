@@ -71,5 +71,7 @@ public interface BookService {
 	 * @return
 	 */
 	void changeState(Integer id);
+	
+	List<BookDTO> findBook(String title, String isbn);
 
 }

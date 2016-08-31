@@ -58,7 +58,7 @@ public class BookServiceImpl implements BookService {
 	public BookDTO create(BookDTO bookDTO) {
 		final Book book = transform(bookDTO);
 		book.setStartDate(Calendar.getInstance().getTime());
-		book.setStatus(StatusEnum.ACTIVE);
+		book.setStatus(StatusEnum.ACTIVE.toString());
 		return transform(bookDao.save(book));
 	}
 
@@ -71,7 +71,7 @@ public class BookServiceImpl implements BookService {
 	@Override
 	public void delete(Integer id) {
 		final Book b = bookDao.findOne(id);
-		b.setStatus(StatusEnum.DISABLE);
+		b.setStatus(StatusEnum.DISABLE.toString());
 		b.setEndDate(Calendar.getInstance().getTime());
 		bookDao.save(b);
 	}
@@ -80,7 +80,7 @@ public class BookServiceImpl implements BookService {
 	public boolean available(Integer id) {
 		final Book b = bookDao.findOne(id);
 		
-		if(b.getStatus()== StatusEnum.ACTIVE)
+		if(b.getStatus()== StatusEnum.ACTIVE.toString())
 			return true;
 		else
 			return false;
@@ -90,12 +90,18 @@ public class BookServiceImpl implements BookService {
 	public void changeState(Integer id){
 		final Book b = bookDao.findOne(id);
 		if(available(id))
-			b.setStatus(StatusEnum.DISABLE);
+			b.setStatus(StatusEnum.RENTED.toString());
 		else
-			b.setStatus(StatusEnum.ACTIVE);
+			b.setStatus(StatusEnum.ACTIVE.toString());
 		
 		bookDao.save(b);
 			
+	}
+
+	@Override
+	public List<BookDTO> findBook(String title, String isbn) {
+		final List<BookDTO> b = bookDao.findBook("%"+title+"%", "%"+isbn+"%");
+		return b;
 	}
 
 	

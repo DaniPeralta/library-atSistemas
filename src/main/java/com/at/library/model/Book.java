@@ -4,14 +4,10 @@ import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
-import com.at.library.enums.StatusEnum;
 
 @Entity
 public class Book implements Serializable {
@@ -28,8 +24,13 @@ public class Book implements Serializable {
 
 	private String author;
 
-	@Enumerated(EnumType.STRING)
-	private StatusEnum status;
+	private String status; 
+	
+	private Integer year;
+	
+	private String image;
+
+	private String description;
 
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
@@ -69,12 +70,36 @@ public class Book implements Serializable {
 		this.author = author;
 	}
 
-	public StatusEnum getStatus() {
+	public String getStatus() {
 		return status;
 	}
 
-	public void setStatus(StatusEnum status) {
+	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public Integer getYear() {
+		return year;
+	}
+
+	public void setYear(Integer year) {
+		this.year = year;
+	}
+
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Date getStartDate() {

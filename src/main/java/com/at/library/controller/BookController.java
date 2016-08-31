@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.at.library.dto.BookDTO;
@@ -24,18 +25,26 @@ public class BookController {
 	private static final Logger log = LoggerFactory.getLogger(BookController.class);
 	
 	//Buscar todos
-	@RequestMapping(method = { RequestMethod.GET })
+	/*@RequestMapping(method = { RequestMethod.GET })
 	public List<BookDTO> getAll() {
 		log.debug("Devuelve todos los libros");
 		return bookservice.findAll();
 	}
-	
+	*/
 	//Buscar por id
 	@RequestMapping(value= "/{id}", method = RequestMethod.GET)
 	public BookDTO findOne(@PathVariable("id") Integer id){
 		return bookservice.findById(id);
 	}
 	
+	//Devolver todos los libros que coincidan con el ISBN y/o con el título
+	@RequestMapping(method = { RequestMethod.GET })
+	public List<BookDTO> getBookByISBNOrTitle(
+			@RequestParam(value = "isbn", required = false, defaultValue="") String isbn,
+			@RequestParam(value = "title", required = false, defaultValue="") String title) {
+		log.debug("Devuelve todos los libros llamados");
+		return bookservice.findBook(title, isbn);
+	}
 
 	//Crear
 	@RequestMapping(method = {RequestMethod.POST})
@@ -58,10 +67,4 @@ public class BookController {
 		bookservice.delete(id);
 	}
 	
-	//Disponible
-	/*@RequestMapping(value= "available/{id}", method = {RequestMethod.GET})
-	public boolean available(@PathVariable("id") Integer id){
-		log.debug(String.format("Vamos a ver si el libro con id: %s está disponible", id));
-		return bookservice.available(id);
-	}*/
 }

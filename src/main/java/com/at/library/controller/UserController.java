@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.at.library.dto.UserDTO;
@@ -24,21 +25,31 @@ public class UserController {
 	private static final Logger log = LoggerFactory.getLogger(UserController.class);
 	
 	
-	//TODO: Devolver todos los usuarios
+	//Devolver todos los usuarios
 	@RequestMapping(method = { RequestMethod.GET })
 	public List<UserDTO> getAll() {
 		log.debug("Devuelve todos los usuarios");
 		return userservice.findAll();
 	}
 	
-	//TODO: Crear
+	//Devolver todos los usuarios
+	@RequestMapping(value = "/prueba", method = { RequestMethod.GET })
+	public List<UserDTO> getUserByNameOrDNI(
+			@RequestParam(value = "name", required = false, defaultValue="") String name,
+			@RequestParam(value = "dni", required = false, defaultValue="") String dni) {
+		log.debug("Devuelve todos los usuarios llamados");
+		return userservice.findUser(name, dni);
+	}
+		
+		
+	//Crear
 	@RequestMapping(method = {RequestMethod.POST})
 	public UserDTO create(@RequestBody UserDTO userDTO){
 		log.debug(String.format("Vamos a crear el usuario siguiente: %s", userDTO));
 		return userservice.create(userDTO);
 	}
 	
-	//TODO: Borrar
+	//Borrar
 	@RequestMapping(value= "/{id}", method = {RequestMethod.DELETE})
 	public void delete(@PathVariable("id") Integer id){
 		log.debug(String.format("Vamos a dar de baja al usuario con id: %s", id));

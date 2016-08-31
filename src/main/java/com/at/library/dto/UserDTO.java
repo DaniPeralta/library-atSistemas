@@ -16,6 +16,17 @@ public class UserDTO implements Serializable{
 	
 	private StatusEnum status;
 	
+	public UserDTO(){}
+	
+	public UserDTO(Integer id, String dni, String name, StatusEnum status){
+		
+		super();
+		this.id = id;
+		this.dni = dni;
+		this.name = name;
+		this.status = status ;
+	}
+	
 	public Integer getId() {
 		return id;
 	}

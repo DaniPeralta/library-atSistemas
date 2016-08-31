@@ -94,6 +94,12 @@ public class UserServiceImpl implements UserService {
 		u.setStatus(StatusEnum.DISABLE);
 		userDao.save(transform(u));
 	}
+
+	@Override
+	public List<UserDTO> findUser(String name, String dni) {
+		final List<UserDTO> u = userDao.findUser("%"+name+"%", "%"+dni+"%");
+		return u;
+	}
 	
 	
 

@@ -61,4 +61,6 @@ public interface UserService {
 	void penalize();
 
 	void forgive();
+	
+	List<UserDTO> findUser(String name, String dni);
 }

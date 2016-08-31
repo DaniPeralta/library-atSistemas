@@ -16,7 +16,9 @@ public class UserDTO implements Serializable{
 	
 	private StatusEnum status;
 	
-	public UserDTO(){}
+	public UserDTO(){
+		super();
+	}
 	
 	public UserDTO(Integer id, String dni, String name, StatusEnum status){
 		

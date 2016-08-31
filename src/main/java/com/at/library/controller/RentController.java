@@ -19,7 +19,7 @@ public class RentController {
 	@Autowired
 	private RentService rentservice;
 	
-	private static final Logger log = LoggerFactory.getLogger(BookController.class);
+	private static final Logger log = LoggerFactory.getLogger(RentController.class);
 
 	//Crear
 	@RequestMapping(method = {RequestMethod.POST})
@@ -34,6 +34,7 @@ public class RentController {
 		log.debug(String.format("Vamos a devolver el alquiler del siguiente libro: %s", id));
 		return rentservice.returnBook(id);
 	}
+	
 	
 	
 
